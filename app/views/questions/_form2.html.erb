@@ -1,8 +1,7 @@
-<%= form_with(model: question) do |form| %>
-  <% if question.errors.any? %>
+
+  <% if answer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
-
       <ul>
         <% question.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,24 +10,21 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+<%= form_for(answer) do |form| %>
+    <%= form.hidden_field :question_id, {value:answer.question_id} %>
 
   <div class="form-group">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= form.label :name %>
+    <%= form.text_field :name, class:"form-control" %>
   </div>
 
   <div class="form-grop">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.label :content %>
+    <%= form.text_area :content, rows:2, class:"form-control"%>
   </div>
 
   <%= form.hidden_field :finished,{value:false} %>
 
-  <div class="actions">
     <%= form.submit %>
-  </div>
+
 <% end %>

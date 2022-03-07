@@ -4,7 +4,7 @@ class CreateQuestions < ActiveRecord::Migration[6.1]
       t.text :title
       t.text :content
       t.text :name
-      t.booleam :finished
+      t.boolean :finished
 
       t.timestamps
     end
