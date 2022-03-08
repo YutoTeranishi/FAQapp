@@ -11,7 +11,7 @@
   </p>
 
   <p class="blockquote-footer text-right">
-    <%= @question.name %>
+    <%= @question.person.name %>
   </p>
   <div class="<%= @question.finished ? 'text-danger':'text-primary'%>">
   <%= @question.finished ? '終了' : '受付中' %>
@@ -31,7 +31,7 @@
 <% else %>
   <% @question.answer.reverse_each do |re| %>
     <li class="list-group-item">
-      <%= re.content + '(' + re.name + ')' %>
+      <%= re.content + '(' + re.person.name + ')' %>
     </li>
   <% end %>
 <% end %>
