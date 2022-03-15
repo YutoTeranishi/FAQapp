@@ -35,7 +35,10 @@
     <%= form.label :mail %>
     <%= form.text_field :mail %>
   </div>
-
+  <div class="form-goup">
+    <%= form.label :account_id %>
+    <%= form.hidden_field :account_id, :value=> params[:account_id]%>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

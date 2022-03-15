@@ -21,10 +21,7 @@
     <%= form.text_area :content %>
   </div>
 
-  <div class="form-grop">
-    <%= form.label :person_id %>
-    <%= form.number_field :person_id %>
-  </div>
+  <%= form.hidden_field :person_id,{value:current_account.id}%>
   <%= form.hidden_field :finished,{value:false} %>
 
   <div class="actions">

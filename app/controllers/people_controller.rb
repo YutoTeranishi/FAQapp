@@ -5,16 +5,28 @@ class PeopleController < ApplicationController
   # GET /people or /people.json
   def index
     @people = Person.all
+=begin
+    if Person.where "account_id == ? and account_id != ?",params['account_id'],nil  then
+      @msg = Person.where "account_id == ?",params['account_id']
+      @msg2= Person.where "account_id != ?",nil
+      current_account
+=end
+    if @people.find_by(account_id: current_account.id)!= nil then
+      redirect_to '/questions/'
+    else
+      redirect_to '/people/new/'+ current_account.id.to_s
+    end
   end
 
   # GET /people/1 or /people/1.json
   def show
-    
+
   end
 
   # GET /people/new
   def new
     @person = Person.new
+    @person.account_id = params[:account_id]
   end
 
   # GET /people/1/edit
@@ -67,6 +79,6 @@ class PeopleController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def person_params
-      params.require(:person).permit(:name,:age, :address, :phoneN, :mail, :question_id, :answer_id)
+      params.require(:person).permit(:account_id,:name,:age, :address, :phoneN, :mail, :question_id, :answer_id)
     end
 end
